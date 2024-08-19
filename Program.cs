@@ -1,6 +1,10 @@
 ﻿int i;
 // accumulator needed to calculate GPA
 int gradePoints = 0;
+// array for saving course names
+string?[] names = new string?[7];
+// array for saving course grades
+string?[] grades = new string?[7];
 
 for (i = 0; i < 7; i++)
 {
@@ -15,13 +19,25 @@ for (i = 0; i < 7; i++)
     }
     // prompt for course name
     Console.WriteLine("Enter the course name.");
-    Console.ReadLine();
+    // save the course name
+    names[i] = Console.ReadLine();
     // prompt for course grade
     Console.WriteLine("Enter the course grade.");
     // save the course grade
-    string? grade = Console.ReadLine()?.ToUpper();
-    // add to accumulator - nested ternary
-    gradePoints += grade == "A" ? 4 : grade == "B" ? 3 : grade == "C" ? 2 : grade == "D" ? 1 : 0;
+    grades[i] = Console.ReadLine()?.ToUpper();
+}
+// clear display
+Console.Clear();
+
+// loop thru array
+for (int x = 0; x < i; x++)
+{
+    // grade points are determined based on grade (A=4, B=3, C=2, D=1, F=0)
+    int gp = grades[x] == "A" ? 4 : grades[x] == "B" ? 3 : grades[x] == "C" ? 2 : grades[x] == "D" ? 1 : 0;
+    // add to accumulator
+    gradePoints += gp;
+    // display course name, grade, and grade points
+    Console.WriteLine("Course: {0}, Grade: {1}, Points: {2}", names[x], grades[x], gp);
 }
 // calculate GPA
 double GPA = (double)gradePoints / i;
